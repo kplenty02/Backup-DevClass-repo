@@ -5,21 +5,21 @@
             }
             agent any
             stages{
-                stage('Checkout'){
+                stage('Checkout on Master'){
                     agent any
                     steps{
                 echo 'cloning...'
                         git 'https://github.com/RayItern/DevOpsCodeDemo-1.git'
                     }
                 }
-                stage('Compile'){
+                stage('Compile with slave1'){
                     agent {label 'slave1'}
                     steps{
                         echo 'compiling...'
                         sh 'mvn compile'
                 }
                 }
-                stage('CodeReview'){
+                stage('CodeReview with slave2'){
                     agent {label 'slave2'}
                     steps{
                     
@@ -27,7 +27,7 @@
                         sh 'mvn pmd:pmd'
                     }
                 }
-                stage('UnitTest'){
+                stage('UnitTest with slave2'){
                     agent {label 'slave2'}
                     steps{
                     echo 'Testing'
