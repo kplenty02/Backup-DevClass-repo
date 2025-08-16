@@ -39,9 +39,9 @@
                     }
                 }	
                 }
-                stage('Package on slave1') {
+                stage('Package on master') {
             agent {
-                label 'slave1'
+                label 'master'
             }
             steps {
                 echo 'Packaging...'
